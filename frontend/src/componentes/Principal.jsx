@@ -1,5 +1,15 @@
 import React from "react";
-import { Box, Tabs, Tab } from "@mui/material";
+import {
+  Box,
+  BottomNavigation,
+  BottomNavigationAction
+} from "@mui/material";
+import {
+  SportsEsports,
+  Add,
+  Login,
+  AccountCircle
+} from "@mui/icons-material";
 import { Stack } from "@mui/joy";
 import IniciarSesion from "./IniciarSesion";
 import Registrarse from "./Registrarse";
@@ -20,25 +30,24 @@ class Principal extends React.Component {
 
     render() {
         let paginas = [
+            <Guardar />,
+            <Mostrar />,
             <Registrarse />,
             <IniciarSesion />,
-            <Guardar />,
-            <Mostrar />
         ];
 
         return (
             <Stack spacing={2}>
-                <Tabs
-                    value={this.state.indice}
-                    onChange={this.actualizarIndice}
-                    centered
-                    variant="fullWidth"
+                <BottomNavigation
+                  showLabels
+                  value={this.state.indice}
+                  onChange={this.actualizarIndice}
                 >
-                    <Tab label="Registrarse" />
-                    <Tab label="Iniciar Sesión" />
-                    <Tab label="Guardar un sneaker" />
-                    <Tab label="Lista de sneakers" />
-                </Tabs>
+                  <BottomNavigationAction label="Nuevo juego" icon={<Add />} />
+                  <BottomNavigationAction label="Todos los juegos" icon={<SportsEsports />} />
+                  <BottomNavigationAction label="Crear una cuenta" icon={<AccountCircle />} />
+                  <BottomNavigationAction label="Inicia sesión" icon={<Login />} />
+                </BottomNavigation>
 
                 <Box sx={{
                   display: "flex",

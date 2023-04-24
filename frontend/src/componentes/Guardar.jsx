@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, TextField, IconButton, Button } from "@mui/material";
-import { PhotoCamera } from "@mui/icons-material";
+import { InsertPhoto } from "@mui/icons-material";
 import { Stack } from "@mui/joy";
 import axios from "axios";
 
@@ -24,6 +24,7 @@ class Guardar extends React.Component {
       desarrollador: "",
       imagen: ""
     };
+
     actualizarFormulario = (evento) => {
         this.setState({
             ...this.state,
@@ -52,23 +53,26 @@ class Guardar extends React.Component {
         return (
             <Stack sx={{ padding: "1rem", border: "1px solid silver", borderRadius: "15px" }} spacing={2}>
                 <TextField
-                    label="nombre"
+                    label="Nombre"
                     name="nombre"
                     type="text"
+                    variant="standard"
                     onChange={this.actualizarFormulario}
                 />
 
                 <TextField
-                    label="sinopsis"
+                    label="Sinopsis"
                     name="sinosis"
                     type="text"
+                    variant="standard"
                     onChange={this.actualizarFormulario}
                 />
 
                 <TextField
-                    label="desarrollador"
+                    label="Desarrollador"
                     name="desarrollador"
                     type="text"
+                    variant="standard"
                     onChange={this.actualizarFormulario}
                 />
 
@@ -84,15 +88,14 @@ class Guardar extends React.Component {
                           onChange={this.actualizarArchivo}
                       />
 
-                      <PhotoCamera />
+                      <InsertPhoto />
                   </IconButton>
                 </Box>
 
                 <Button
-                    variant="contained"
                     onClick={this.guardar}
                 >
-                  Guardar
+                  Guardar juego
                 </Button>
             </Stack>
         );

@@ -1,5 +1,5 @@
 let itemController = require("./gamesController.js");
-let personaController = require("./mediController.js");
+let personaController = require("./personaController.js");
 
 module.exports = function (app) {
     app.post('/api/guardar', itemController.guardar);

@@ -21,9 +21,9 @@ class IniciarSesion extends React.Component {
             .then(function (datos) {
               console.log(datos);
               if (datos.data !== null) {
-                alert("Has iniciado sesión");
+                alert("Se inició sesión con éxito|");
               } else {
-                alert("Datos incorrectos");
+                alert("Los datos ingresados son inválidos");
               }
             });
     }
@@ -32,24 +32,25 @@ class IniciarSesion extends React.Component {
         return (
             <Stack sx={{ padding: "1rem", border: "1px solid silver", borderRadius: "15px" }} spacing={2} width="fit-content" mt={5} alignItems="center">
                 <TextField
-                    label="Correo"
+                    label="Tu correo"
                     name="correo"
                     type="email"
+                    variant="standard"
                     onChange={this.actualizarFormulario}
                 />
 
                 <TextField
-                    label="Contraseña"
+                    label="Tu contraseña"
                     name="contrasena"
                     type="password"
+                    variant="standard"
                     onChange={this.actualizarFormulario}
                 />
 
                 <Button
-                    variant="contained"
                     onClick={this.iniciarSesion}
                 >
-                  Iniciar Sesión
+                  Inicia sesión
                 </Button>
             </Stack>
         );

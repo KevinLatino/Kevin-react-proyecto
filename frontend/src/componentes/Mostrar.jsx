@@ -6,7 +6,7 @@ import Articulo from "./Articulo.jsx";
 
 class Mostrar extends React.Component {
     state = {
-        datos: []
+        datos: null
     };
 
     componentDidMount() {

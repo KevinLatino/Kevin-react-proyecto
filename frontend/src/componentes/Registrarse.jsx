@@ -1,6 +1,6 @@
 import React from "react";
 import { Stack } from "@mui/joy";
-import { Box, TextField, Button } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 import axios from "axios";
 
 class Registrarse extends React.Component {
@@ -18,31 +18,32 @@ class Registrarse extends React.Component {
 
     registrarse = () => {
         axios.post("http://localhost:8080/api/registrarse", this.state)
-          .then(() => alert("Te has registrado"))
+          .then(() => alert("Registrado(a) con éxito"))
     }
 
     render() {
         return (
             <Stack sx={{ padding: "1rem", border: "1px solid silver", borderRadius: "15px" }} spacing={2} width="fit-content" mt={5} alignItems="center">
                 <TextField
-                    label="Correo"
+                    label="Tu correo"
                     name="correo"
                     type="email"
+                    variant="standard"
                     onChange={this.actualizarFormulario}
                 />
 
                 <TextField
-                    label="Contraseña"
+                    label="Tu contraseña"
                     name="contrasena"
                     type="password"
+                    variant="standard"
                     onChange={this.actualizarFormulario}
                 />
 
                 <Button
-                    variant="contained"
                     onClick={this.registrarse}
                 >
-                  Registrarse
+                  Registrate
                 </Button>
             </Stack>
         );

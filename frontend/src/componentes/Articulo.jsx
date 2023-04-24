@@ -1,16 +1,24 @@
-import { Typography, Avatar, List, ListItem, ListItemAvatar, ListItemText } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Stack, IconButton, Typography, Avatar, ListItem, ListItemAvatar, ListItemText } from "@mui/material";
+import { Check, Delete } from "@mui/icons-material";
 import axios from "axios";
 
-const fetchGames = async () => {
-    const response = await axios.get("http://localhost:8080/api/mostrar");
-    const data = response.data;
-
-    return data;
+function jugar(id) {
+    axios.post("http://localhost:8080/api/jugar", { id })
+      .then(function() {
+        alert("OK");
+      });
 };
 
-const GameTile = ({ game }) => {
-    const { nombre, sinopsis, desarrollador, imagen } = game;
+function eliminar(id) {
+    axios.post("http://localhost:8080/api/eliminar", { id })
+      .then(function() {
+        alert("Juego eliminado");
+      });
+};
+
+const GameTile = ({ datos }) => {
+    const id = datos._id;
+    const { jugado, nombre, sinopsis, desarrollador, imagen } = datos;
 
     return (
         <ListItem alignItems="flex-start">
@@ -26,53 +34,31 @@ const GameTile = ({ game }) => {
                 <Typography variant="body1">
                     {sinopsis}
                 </Typography>
+
+              {
+                !jugado ?
+                <Typography color="red">Por jugar</Typography>:
+                <Typography color="green">Jugado</Typography>
+              }
+
+              <Stack direction="row" spacing={1}>
+                <IconButton
+                  variant="outlined"
+                  onClick={() => jugar(id)}
+                >
+                  <Check />
+                </IconButton>
+
+                <IconButton
+                  variant="outlined"
+                  onClick={() => eliminar(id)}
+                >
+                  <Delete />
+                </IconButton>
+              </Stack>
             </ListItemText>
         </ListItem>
     );
-
-    return (
-        <div style={{
-            display: "flex",
-            flexDirection: "column",
-        }}>
-            <span>
-                {nombre}
-            </span>
-
-            <span>
-                {sinopsis}
-            </span>
-
-
-            <span>
-                {desarrollador}
-            </span>
-
-            <img src={imagen} />
-        </div>
-    );
 };
 
-const AllGames = () => {
-    const [games, setGames] = useState(null);
-
-    useEffect(() => {
-        fetchGames()
-            .then((games) => setGames(games))
-    }, []);
-
-    if (games === null) {
-        return "Cargando...";
-    }
-
-    const gamesElements = games
-        .map((game, index) => <GameTile key={index} game={game} />)
-
-    return (
-        <List>
-            {gamesElements}
-        </List>
-    );
-};
-
-export default AllGames;
+export default GameTile;
