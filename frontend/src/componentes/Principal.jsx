@@ -11,10 +11,10 @@ import {
   AccountCircle
 } from "@mui/icons-material";
 import { Stack } from "@mui/joy";
-import IniciarSesion from "./IniciarSesion";
-import Registrarse from "./Registrarse";
-import Guardar from "./Guardar";
-import Mostrar from "./Mostrar";
+import IniciarSesion from "./LogIn";
+import Registrarse from "./CreateAccount";
+import Guardar from "./save";
+import Mostrar from "./show";
 
 class Principal extends React.Component {
     state = {
